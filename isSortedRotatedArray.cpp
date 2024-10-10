@@ -20,5 +20,11 @@ bool isSortedAndRotated(vector<int> &nums)
 
 int main() {
   vector<int> arr = {5,6,7,1,2,3,4};
-  cout << "Is the array sorted and rotated: " << isSortedAndRotated(arr) << endl;
+  if(isSortedAndRotated(arr)) {
+    cout << "The array is sorted and rotated " << endl;
+  } 
+  else {
+    cout << "The array is not sorted and rotated " << endl;
+  }
+  
 }
