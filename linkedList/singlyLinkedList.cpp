@@ -94,6 +94,90 @@ void print(Node* &head) {
   cout << endl;
 }
 
+Node* reverseLinkedList(Node* head) {
+  Node* curr = head;
+  Node* prev = NULL;
+  reverse(head, curr, prev);
+  return head;
+
+  /*if(head == NULL || head->next == NULL) {
+    return head;
+  }
+  Node* prev = NULL;
+  Node* curr = head;
+  while(curr != NULL) {
+    Node* forward = curr->next;
+    curr->next = prev;
+    prev = curr;
+    curr = forward;
+  }
+  return prev; // returning the head of the reversed LL
+  */
+}
+
+Node* reverse(Node* &head, Node* curr, Node* prev) {
+
+  if(curr == NULL) {
+    head = prev;
+    return;
+  }
+  reverse(head, curr->next, curr);
+  curr -> next = prev;
+
+}
+
+Node* reverse1(Node* head) {
+  //base case
+  if(head == NULL || head->next == NULL) {
+    return head;
+  }
+  Node* newHead = reverse1(head->next);
+  head->next->next = head;
+  head->next = NULL;
+
+  return newHead;
+
+}
+
+int getLength(Node* head) {
+  int cnt = 0;
+  Node* temp = head;
+  while(temp != NULL) {
+      cnt++;
+      temp = temp->next;
+  }
+  return cnt;
+}
+Node *findMiddle(Node *head) {
+  // Write your code here
+  /*
+  int length = getLength(head);
+  int ans = length/2;
+  Node* temp = head;
+  while(ans--) {
+      temp = temp->next;
+  }
+  return temp;
+  */
+ if(head == NULL || head->next == NULL) {
+  return head;
+}
+if(head->next->next == NULL) {
+  return head->next;
+}
+  Node* fast = head->next;
+  Node* slow = head;
+  while(fast != NULL) {
+    fast = fast->next;
+    if(fast != NULL) {
+      fast = fast->next;
+    }
+    slow = slow->next;
+  }
+  return slow;
+}
+
+
 
 int main() {
 
